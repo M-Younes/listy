@@ -26,6 +26,7 @@ module Listy
     # -- all .rb files in that directory are automatically loaded.
 
     # Don't generate system test files.
+    config.autoload_paths += %W(#{config.root}/lib)
     config.generators.system_tests = nil
   end
 end
