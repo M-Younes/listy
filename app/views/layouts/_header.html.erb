@@ -1,0 +1,8 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">    
+      <ul class="nav">
+      	<li><%= link_to "Create new List", new_list_path, class: "btn btn-success pull-right" %></li>
+        <li><%= link_to "<i class='fa fa-trash-o'></i> Trash".html_safe, trash_lists_path, class: "btn btn-info" %></li>
+      </ul>
+  </div><!-- /.container-fluid -->
+</nav>

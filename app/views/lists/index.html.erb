@@ -1,0 +1,38 @@
+<h2>List index</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>List Name</th>
+      <th style="width: 100px;text-align: center;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <th scope="row"><%= list.id %></th>
+        <td><%= link_to list.name, list_path(list) %></td>
+        <td align="right">
+          <div class="btn-group" role="group">
+            <%= link_to "Edit", edit_list_path(list), class: "btn btn-info" %>
+            <%= link_to "Destroy", delete_list_path(list), method: :delete, data: { confirm: "Sure you want to soft delete this list?" }, class: "btn btn-warning" %>          
+            <%= link_to "Delete", list_path(list), method: :delete, data: { confirm: "Sure you want to permanently delete this list?" }, class: "btn btn-danger" %>
+          </div>        
+        </td>
+      </tr>
+      <tr><td colspan="3" >Items</td></tr>
+      <% list.list_items.not_destroyed.each_with_index do |item, i| %>
+        <tr>
+          <td><%=i+1%></td>
+          <td><span><%=link_to item.name, list_item_path(item) %></span></td>
+          <td>
+            <div class="btn-group" role="group">
+              <%= link_to "Destroy", delete_list_item_path(item), method: :delete, data: { confirm: "Sure you want to soft delete this item?" }, class: "btn btn-warning" %>          
+              <%= link_to "Delete", list_item_path(item), method: :delete, data: { confirm: "Sure you want to permanently delete this item?" }, class: "btn btn-danger" %>
+            </div>         
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

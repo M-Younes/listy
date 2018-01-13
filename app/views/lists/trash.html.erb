@@ -1,0 +1,81 @@
+<% if @destroyed_lists.count == 0 %>
+  <p>No Lists in the trash</p>
+<% else %>
+  <h2>Trash List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>List Name</th>
+        <th style="width: 100px;text-align: center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @destroyed_lists.each do |list| %>
+        <tr>
+          <th scope="row"><%= list.id %></th>
+          <td><%= link_to list.name, list_path(list) %></td>
+          <td align="right">
+            <div class="btn-group" role="group">
+              <%= link_to "Restore", restore_list_path(list), method: :post, data: { confirm: "Sure you want to restore this list?" }, class: "btn btn-warning" %>          
+            </div>        
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<% if @destroyed_items.count == 0 %>
+  | <p> No list items in the trash </p>
+<% else %>
+  <h2>Trash items</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item Name</th>
+        <th style="width: 100px;text-align: center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @destroyed_items.each do |item| %>
+        <tr>
+          <th scope="row"><%= item.id %></th>
+          <td><%=item.name %></td>
+          <td align="right">
+            <div class="btn-group" role="group">
+              <%= link_to "Restore", restore_list_item_path(item), method: :post, data: { confirm: "Sure you want to restore this item?" }, class: "btn btn-warning" %>          
+            </div>        
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<% if @destroyed_tags.count == 0 %>
+  | <p> No Tags items in the trash </p>
+<% else %>
+  <h2>Trash Tag items</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tag Name</th>
+        <th style="width: 100px;text-align: center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @destroyed_tags.each do |tag_item| %>
+        <tr>
+          <th scope="row"><%= tag_item.id %></th>
+          <td><%= tag_item.tag.name %></td>
+          <td align="right">
+            <div class="btn-group" role="group">
+              <%= link_to "Restore", restore_tag_item_path(tag_item), method: :post, data: { confirm: "Sure you want to restore this Tag?" }, class: "btn btn-warning" %>          
+            </div>        
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

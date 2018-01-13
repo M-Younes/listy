@@ -1,0 +1,13 @@
+<div class="nested-fields edit-wrap white-base">
+  <div class="media">
+    <div class="media-body">
+      <div class="form-group">
+        <%= f.label :name  %></br>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="merch-action">
+    <%= link_to_remove_association button_to("Remove"), f, class: "remove_fields" %>
+  </div>
+</div>
